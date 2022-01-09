@@ -1,4 +1,7 @@
 #此代码运行需要python 3.7
+#如有gpu
+torch=1.9.0+cu102
+#cpu
 torch
 torchvision
 tqdm
