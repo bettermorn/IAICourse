@@ -1,0 +1,4 @@
+deap
+seaborn
+latex
+version_information
