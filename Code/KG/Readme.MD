@@ -1,7 +1,7 @@
-# Sample for DeepKE
-# installation
+# Overview
+a sample for DeepKE relation extraction
+# DeepKE installation
 1. refer to  https://github.com/zjunlp/DeepKE#quick-start
-
 2. Note: Python == 3.8.X
 3. `pip install deepke`  already include torch ,for CPU it is done
 4. for GPU, install torch for cuda as follows
