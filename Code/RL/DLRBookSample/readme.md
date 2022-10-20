@@ -3,6 +3,7 @@ sample code notebook by YutaroOgawa
 * Window 10
 * Python == 3.9.13
 * pip list
+```
 Package              Version
 -------------------- ---------
 anyio                3.5.0
@@ -115,3 +116,4 @@ widgetsnbextension   3.5.2
 win-inet-pton        1.1.0
 wincertstore         0.2
 zipp                 3.8.1
+```
