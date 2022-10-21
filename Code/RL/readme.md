@@ -1,6 +1,9 @@
 Mac OSX and Windows version for simple game by openai
 
-建议在Linux、MacOS上运行，不建议使用Windows
+建议在Linux、MacOS上运行，不建议使用Windows，
+试用云服务器信息可参考
+https://help.aliyun.com/document_detail/312253.htm?spm=5176.8789780.J_5975631400.1.358945b5sEg3MW
+和 https://ecs-buy.aliyun.com/ecs/?spm=a2c4g.11186623.0.0.22a263dbg0G3sx#/trial
 
 # 注释X window相关代码
 
