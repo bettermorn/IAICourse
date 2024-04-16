@@ -1,5 +1,6 @@
 # GraphKT
 
+
 ## 程序运行环境
 ```
 torch 2.2.2
@@ -12,5 +13,11 @@ The libraries required for this program are torch-geometric, torch and its vario
 详情参考 https://github.com/pyg-team/pytorch_geometric/issues/8523
 
 ## 程序修改
+以下代码已修改
     # exclude the  groupings
     seqs = data.groupby(['user_id']).apply(lambda x: x[features].values.tolist(),include_groups=False)
+
+## 程序运行
+ipython GraphKT.ipynb
+
+    
