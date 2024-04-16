@@ -1,8 +1,10 @@
 # GraphKT
 
 ## 程序运行环境
+```
 torch 2.2.2
 cuda 12.1
+```
 
 ## 运行程序需要安装依赖包
 The libraries required for this program are torch-geometric, torch and its various accompanying libraries
