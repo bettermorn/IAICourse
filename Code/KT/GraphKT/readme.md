@@ -14,10 +14,13 @@ The libraries required for this program are torch-geometric, torch and its vario
 
 ## 程序修改
 以下代码已修改
+```
     # exclude the  groupings
     seqs = data.groupby(['user_id']).apply(lambda x: x[features].values.tolist(),include_groups=False)
+```
 
 ## 程序运行
-ipython GraphKT.ipynb
+
+`ipython GraphKT.ipynb`
 
     
