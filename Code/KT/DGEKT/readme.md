@@ -20,6 +20,7 @@ ASSIST09, ASSIST17, and EdNet.
 
 # 代码链接
 https://github.com/yumo216/dgekt
+可使用自己的数据集 https://github.com/yumo216/dgekt#try-using-your-own-dataset
 
 # 代码修改
 建议可以如下调整代码的目录结构，以便更明晰
