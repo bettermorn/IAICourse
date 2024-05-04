@@ -1,7 +1,7 @@
 # DDPM
 
 * 论文地址：https://arxiv.org/abs/2006.11239 
-* 关键词：
+* 关键词：生成式模型 自回归解码的一般化 渐进式有损解压缩方案 扩散模型
 * 相关网站 https://hojonathanho.github.io/diffusion/
 
 
