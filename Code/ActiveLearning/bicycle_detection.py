@@ -7,12 +7,13 @@ import random
 from random import shuffle
 
 ##
-
+from torchvision import transforms
 import torchvision.models as models
 import torch 
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+
 from torchvision import *
 from PIL import *
 import urllib 
@@ -23,7 +24,6 @@ import zlib
 import math
 import statistics
 import datetime
-
 
 from torchvision.models import ResNeXt50_32X4D_Weights
 from torchvision.models.detection import FasterRCNN_ResNet50_FPN_Weights 
@@ -326,6 +326,8 @@ def train_model(batch_size=20, num_epochs=40, num_labels=2, num_inputs=2058, mod
     global current_model
     global current_accuracies
     global number_to_sample_per_train
+    
+    print("3.training model")
 
     if model == None:
         model = SimpleClassifier(num_labels, num_inputs)
@@ -529,7 +531,7 @@ def evaluate_model(model, use_evaluation = True, limit = -1):
                     
         count += 1
             
-    print(str(true_pos)+" "+str(false_pos)+" "+str(false_neg)+" "+str(true_neg))
+    print("TP:"+str(true_pos)+" "+"FP:"+str(false_pos)+" "+"FN:"+str(false_neg)+" "+"TN:"+str(true_neg))
 
     ave_loss = total_loss / len(evaluation_data)
 
@@ -558,8 +560,12 @@ def evaluate_model(model, use_evaluation = True, limit = -1):
 
     conf_b = statistics.mean(bicycle_confs)
     conf_n = statistics.mean(not_bicycle_confs)
-    print("ave confs: "+str(conf_b)+" "+str(conf_n))
+    print("ave confidences: "+str(conf_b)+" "+str(conf_n))
     print("ave loss: "+str(ave_loss))
+    print("fscore:"+str(fscore))
+    print("auc:"+str(auc))
+    print("recall:"+str(recall))
+    print("precision"+str(precision))
 
     return[fscore, auc, precision, recall, ave_loss]
 
@@ -572,13 +578,13 @@ def load_most_recent_model(num_labels=2, num_inputs=2058):
     existing_models = os.listdir('models/')
     if len(existing_models) == 0:
         return
-    
+
     last_model = existing_models[-1]
     
     current_model = SimpleClassifier(num_labels, num_inputs)
-    #current_model.load_state_dict(torch.load('models/'+last_model))
     path = 'models/'+last_model
-    current_model.load_state_dict(torch.load(path,weights_only=False),False)
+    current_model.load_state_dict(torch.load(path,weights_only=True),strict=False)
+    
     current_accuracies = evaluate_model(current_model, False, -1)
             
     print("loaded model: "+last_model)
@@ -782,7 +788,7 @@ def add_pending_annotations():
 
         # copy to avoid race conditions
         if len(pending_annotations) > 0 and verbose:
-            print("adding pending annotations")
+            print("!!!!!!!2 adding pending annotations!!!!!!!")
         
         found_annotation = None
         for annotation in pending_annotations:
@@ -819,6 +825,7 @@ def add_pending_annotations():
                 
             # cache features for faster training later
             eel.sleep(0.01) # allow other processes in
+            print("-----make feature vector-----")
             features = make_feature_vector(image_id, url, label)            
             eel.sleep(0.1) # allow other processes in
                 
@@ -863,7 +870,8 @@ def estimate_processing_time():
         return 0 # no info yet
     else:
         if verbose:
-            print([total_time, total_downloads, total_pending])
+            print("-----estimate_processing_time----") 
+            print("total_time,total_downloads,total_pending"+str([total_time, total_downloads, total_pending]))
         return (total_time / total_downloads) * total_pending
 
 @eel.expose
@@ -992,6 +1000,8 @@ def load_data():
     global test_annotations
     global new_training_data_path
     global new_training_data
+    
+    print("!!!!!!!!!!1 loading data!!!!!!!!")
 
     print("loading val")
     validation_annotations = load_annotations(validation_labels_path, validation_images_path, load_all = False)  
@@ -1014,7 +1024,8 @@ def load_data():
 
 
 def continually_retrain():
-    while True:        
+    while True:   
+        print("!!!!!!!!!!3.continually_retrain!!!!!!!!!!")
         train_model()
         eel.sleep(20) # Use eel.sleep(), not time.sleep()
 
@@ -1033,6 +1044,10 @@ eel.spawn(continually_retrain)
 
 
 eel.start('bicycle_detection.html', size=(1350, 900))
+
+
+
+
 
 
 
