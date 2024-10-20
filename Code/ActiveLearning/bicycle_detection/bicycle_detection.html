@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bicycle Detection</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 引入外部样式表 -->
+    <link rel="stylesheet" href="./bicycle_detection.css">
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+    <style>
+        html, body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif;
+        }
+        td {
+            vertical-align: top;
+            text-align: center;
+            padding-top: 10px;
+        }
+        .image {
+            max-height: 256px;
+            max-width: 256px;
+            display: block;
+            clear: left;
+            margin-bottom: 5px;
+            opacity: 0.7;
+            border-width: 3px;
+            border-color: grey;
+            border-style: solid;
+        }
+        .annotation {
+            background-color: white;
+        }
+        .focus_image {
+            border-color: red;
+            opacity: 1.0;
+        }
+        .big_image {
+            max-height: 1024px;
+            max-width: 1024px;
+        }
+    </style>
+
+    <!-- 修改属性引号为双引号 -->
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="/bicycle_detection.js"></script>
+
+</head>
+
+<body class="w3-light-grey" style="margin-left:5px;">
+
+
+    <div class="w3-top w3-black">
+        <span class="w3-bar-item">Bicycle Detection</span>
+    </div>
+
+ 
+
+    <!-- 页面内容 -->
+    <div class="w3-main" style="margin-left:10px; margin-top:40px;">
+ 
+
+     <div id="loading-status" style="visibility:visible;">
+             Loading data, please wait...
+     </div>
+     <div id="annotation-status" style="visibility:visible;">Annotation status,please proceed</div>
+   
+     <div id="error-message" style="color: red; display: none;"></div>
+
+        <table>
+            <tr>
+                <td>
+                    <div id="instructions" style="visibility:visible;" class="instructions">
+                        Press "b" if a bicycle or "n" if not. 
+                        <br />Press "z" to zoom in on current image.
+                    </div>
+                </td>
+                <td>
+                    <div id="stats" style="visibility:hidden;">
+                        Target Accuracy: F-Score = 0.85 <br />Current Accuracy: = N/A
+                    </div>
+                    <div id="time" style="visibility:hidden;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="images"></div>
+                </td>
+                <td>
+                    <img src="" class="big_image" id="big_image" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>
