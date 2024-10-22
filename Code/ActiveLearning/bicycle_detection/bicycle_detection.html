@@ -60,12 +60,13 @@
 
     <!-- 页面内容 -->
     <div class="w3-main" style="margin-left:10px; margin-top:40px;">
- 
 
-     <div id="loading-status" style="visibility:visible;">
-             Loading data, please wait...
-     </div>
-     <div id="annotation-status" style="visibility:visible;">Annotation status,please proceed</div>
+    <!-- 添加控制按钮 -->
+        <!-- 添加在需要的位置 -->
+        <button id="start-training-button" onclick="startTraining()">开始训练</button>
+        <button id="stop-training-button" onclick="stopTraining()" disabled>停止训练</button>
+     <div id="loading-status" style="visibility:visible;"></div>
+
    
      <div id="error-message" style="color: red; display: none;"></div>
 
