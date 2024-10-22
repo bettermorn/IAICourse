@@ -1,3 +1,7 @@
+# 架构
+参考 Eel https://github.com/bettermorn/IAICourse/wiki/Eel%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95
+
+
 # main function
 * 数据加载和预处理：从Open Images数据集中加载有标签和无标签的图像数据，处理注释，并使用SQLite管理特征存储。
 * 特征提取：使用预先训练好的模型（ResNeXt50和Faster R-CNN）从图像中提取特征。
@@ -27,9 +31,18 @@
 |function showError(message)|显示错误信息|message|页面显示错误信息|无|
 
 # Python file
-处理race condition 异步处理，需要用到 lock，或者也可以使用条件变量。
+* Note：处理race condition 异步处理，需要用到 lock，或者也可以使用条件变量。
+* 加载数据需要一段时间，尤其是第一次，因此我们并行处理 # eel.spawn(load_data)。单独线程逐步下载并提取COCO和ImageNet表示eel.spawn(add_pending_annotations)， 不断重新训练模型，并对未标记的项目进行预测 eel.spawn(continually_retrain)
+
 ## 1 load_data
+1.1 loading val  call load_annotations
+1.2 loading existing annotations
+1.3 loading eval
+1.4 loading train
+数据加载完成以后，通知前端。
+1.5 load most recent model
 
 ## 2 add pending annotation
+
 
 ## 3 train model
