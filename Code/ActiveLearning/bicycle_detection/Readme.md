@@ -14,7 +14,7 @@
 |Name|Function|Input|Output|Comment|
 |:--|--|---|---|--:|
 |function data_loading_completed()|数据加载成功后给出信息|无|更新页面|需要eel.expose|
-|document.addEventListener('DOMContentLoaded', async function ()||调用后台异步函数start_data_loading()|无|更新加载状态|使用Promise处理异步操作|
+|document.addEventListener('DOMContentLoaded', async function ()|页面加载完成后通知后端开始加载数据|调用后台异步函数start_data_loading()|无|更新加载状态|使用Promise处理异步操作|
 |function add_annotation(is_bicycle)|完成标注过程|is bicycle|调用后台异步函数add_annotation|Promise|
 |function focus_first_image()|Focus first Image|无|聚焦|Promise|
 |function remove_first_image()|Remove first Image|无|移除标注好的图片并聚焦新的图片|Promise|
