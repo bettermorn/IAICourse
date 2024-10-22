@@ -19,18 +19,15 @@
 |function focus_first_image()|Focus first Image|无|聚焦|Promise|
 |function remove_first_image()|Remove first Image|无|移除标注好的图片并聚焦新的图片|Promise|
 |document.addEventListener("keypress", function (event)|根据key处理标注过程|key|无|b，n，z|
-
 |function training_loaded() |加载训练数据|无|调用后台异步函数training_loaded()，返回成功结果或者false|Promise|
 |function validation_loaded()|加载验证数据|无|调用后台异步函数validation_loaded()，返回成功结果或者false|Promise|
-
 |setInterval(function ()|定时检查用于标注的新图片|无|聚焦于第一张图片|处理竞争条件|
 |setInterval(function ()|定时获取当前的准确率|调用异步函数get_current_accuracies|更新界面的准确率|使用Promise|
 |setInterval(function ()|估算处理时间|调用异步函数estimate_processing_time|显示处理时间|使用Promise以及显示错误信息|
-
 |function showError(message)|显示错误信息|message|页面显示错误信息|无|
 
 # Python file
-
+处理race condition 异步处理，需要用到 lock，或者也可以使用条件变量。
 ## 1 load_data
 
 ## 2 add pending annotation
