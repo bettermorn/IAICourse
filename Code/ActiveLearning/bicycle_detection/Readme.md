@@ -56,30 +56,30 @@ https://github.com/rmunro/bicycle_detection Human-in-the-Loop Machine Learning b
 # 主要方法
 特征向量创建
 ## def make_feature_vector(image_id, url, label=“”):
-    # 创建或检索图像特征向量的函数
-用途：将两个模型提取的特征相结合，为图像创建一个全面的特征向量。
-功能：
-* 检查URL是否缺失或图像是否损坏。
-* 尝试从特征存储（SQLite数据库）中检索特征。
-* 如果没有，则下载图像并使用两个模型提取特征。
-* 将特征存储在数据库中以备将来使用。
+创建或检索图像特征向量的函数
+* 目的：将两个模型提取的特征相结合，为图像创建一个全面的特征向量。
+* 功能：
+>* 检查URL是否缺失或图像是否损坏。
+>* 尝试从特征存储（SQLite数据库）中检索特征。
+>* 如果没有，则下载图像并使用两个模型提取特征。
+>* 将特征存储在数据库中以备将来使用。
 
 ## def load_annotations(annotation_filepath, image_filepath, load_all=False):
 从Open Images数据集中加载注释和图像URL
-用途：解析包含图像ID、URL和标签的CSV文件。使用封存和压缩技术缓存数据结构，以便更快地访问。
+* 目的：解析包含图像ID、URL和标签的CSV文件。使用封存和压缩技术缓存数据结构，以便更快地访问。
 
-def train_model(batch_size=20, num_epochs=40, num_labels=2, num_inputs=2058, model=None):
-    # 使用标注数据训练SimpleClassifier模型
-目的：为分类器实现训练循环。
-功能：
-* 确保有足够的标记样本开始训练。
-* 平衡正负样本数量相等的数据集。
-* 训练模型，并评估验证数据上的性能。
-* 如果性能提高，则保存模型。
+## def train_model(batch_size=20, num_epochs=40, num_labels=2, num_inputs=2058, model=None):
+使用标注数据训练SimpleClassifier模型.
+* 目的：为分类器实现训练循环。
+* 功能：
+>* 确保有足够的标记样本开始训练。
+>* 平衡正负样本数量相等的数据集。
+>* 训练模型，并评估验证数据上的性能。
+>* 如果性能提高，则保存模型。
 
 ## def get_random_prediction(model=None):
-功能：获取对未标记数据的预测，以选择样本进行注释
-目的：预测未标记图像的标签，以找出不确定性或异常值较高的图像。
+* 目的：预测未标记图像的标签，以找出不确定性或异常值较高的图像。
+
 
 
 
