@@ -50,11 +50,17 @@ https://github.com/rmunro/bicycle_detection Human-in-the-Loop Machine Learning b
 
 ## 2 add pending annotation
 
+* def load_annotations(annotation_filepath, image_filepath, load_all=False): # 从Open Images数据集中加载注释和图像URL
+用途：解析包含图像ID、URL和标签的CSV文件。使用封存和压缩技术缓存数据结构，以便更快地访问。
+
+
 
 ## 3 train model
+* Class SimpleClassifier(nn.Module):  #线性分类器，无隐藏层 用途：定义一个简单的线性分类器，将输入特征向量映射到标签概率。
+
 
 # 主要方法
-特征向量创建
+
 ## def make_feature_vector(image_id, url, label=“”):
 创建或检索图像特征向量的函数
 * 目的：将两个模型提取的特征相结合，为图像创建一个全面的特征向量。
@@ -77,8 +83,44 @@ https://github.com/rmunro/bicycle_detection Human-in-the-Loop Machine Learning b
 >* 训练模型，并评估验证数据上的性能。
 >* 如果性能提高，则保存模型。
 
+## def evaluate_model(model, use_evaluation=True, limit=-1):
+评估模型在验证或评估数据上的表现.目的：计算F-score和AUC等指标
+
+
+
 ## def get_random_prediction(model=None):
 * 目的：预测未标记图像的标签，以找出不确定性或异常值较高的图像。
+  
+
+## 特征存储和数据缓存
+用于管理存储特征和数据结构的SQLite数据库的函数
+* def create_feature_tables():# 在SQLite数据库中创建必要的表
+* def record_missing_url(url):# 记录缺失的URL
+* def url_is_missing(url):# 检查URL是否被记录为缺失
+* def record_bad_image(url):# 记录无法处理的图像的URL
+* def is_bad_image(url):# 检查URL是否被记录为坏图像
+* def store_data_structure(structure_name, data): # 将数据结构存储在数据库中
+* def get_data_structure_store(structure_name):# 从数据库中检索并解压数据结构
+* def add_to_feature_store(image_id, features, url=“”, label=“”):# 将图像的特征存储在数据库中
+* def get_features_from_store(image_id): # 从数据库中检索图像的特征.目的：高效地存储和检索数据，避免冗余计算，并妥善处理缺失数据。
+
+## Eel 暴露的用户界面函数
+@eel.expose
+* def training_loaded(): # 检查是否加载了未标记的项目
+* def validation_loaded(): # 检查验证数据是否已加载
+* def get_current_accuracies(): # 返回当前模型的准确度
+* def estimate_processing_time(): # 估算处理待处理注释的时间
+* def add_annotation(url, is_bicycle):# 将新注释添加到待处理列表
+* def get_next_image(): # 检索下一个图像以进行注释或验证,目的：向 JavaScript 前端公开函数，以便与后端逻辑进行交互。
+## 程序入口点和线程
+* def load_data(): # 加载所有数据并初始化模型
+* def continually_retrain(): # 循环不断重新训练模型
+* 初始化数据库表 create_feature_tables()
+* 使用eel.spawn启动并行任务
+* 启动Eel应用程序
+
+
+
 
 
 
