@@ -32,7 +32,8 @@ df = df._append(pd.Series(), ignore_index=True)
 ```
 
 ## 代码演示
-https://www.bilibili.com/video/BV1adYezUE5X/?spm_id_from=333.1387.homepage.video_card.click
+[【实验演示】DiffAD基于插值的时序异常检测与条件权重增量扩散模型-测试](https://www.bilibili.com/video/BV1adYezUE5X)
+[【实验演示】DiffAD基于插值的时序异常检测与条件权重增量扩散模型-训练](https://www.bilibili.com/video/BV1o4Yvz4EHg)
 
 
 # 相关参考资料
