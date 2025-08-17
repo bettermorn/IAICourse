@@ -22,6 +22,26 @@ https://github.com/17000cyh/IMDiffusion?tab=readme-ov-file#data
 https://github.com/17000cyh/IMDiffusion
 
 ## 代码修改
+1. diff_models.py
+   ```
+   def get_torch_trans(heads=8, layers=1, channels=64):
+    encoder_layer = nn.TransformerEncoderLayer(
+        d_model=channels, nhead=heads, dim_feedforward=64, activation="gelu"
+    )
+    return nn.TransformerEncoder(encoder_layer, num_layers=layers)
+   ```
+   to
+   ```
+   def get_torch_trans(heads=8, layers=1, channels=64):
+    encoder_layer = nn.TransformerEncoderLayer(
+        d_model=channels, nhead=heads, dim_feedforward=64, activation="gelu",
+        batch_first=True
+
+    )
+    return nn.TransformerEncoder(encoder_layer, num_layers=layers)
+   ```
+2. compute_score.py
+
 
 
 ## 代码演示
